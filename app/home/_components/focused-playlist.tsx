@@ -3,6 +3,7 @@ import { useAppSelector } from '@/redux/hooks';
 import React, { useEffect } from 'react';
 import { useNavContext } from '../../_context/nav-context';
 import SongTable from './song-table';
+import { songs } from './song-data';
 
 type Props = {
   focusedPlaylist: string | null;
@@ -11,6 +12,9 @@ type Props = {
 const FocusedPlaylist = ({ focusedPlaylist }: Props) => {
   const { playlists } = useAppSelector((state) => state.playlists);
   const playlist = playlists.filter((data) => data.id === focusedPlaylist)[0];
+  const filteredSongs = songs.filter((song) =>
+    song.playlist.includes(focusedPlaylist as string)
+  );
 
   return (
     <div className='absolute top-0 left-0 w-full h-full z-10  bg-background mx-8 '>
@@ -23,7 +27,7 @@ const FocusedPlaylist = ({ focusedPlaylist }: Props) => {
               <p className='text-sm text-muted-foreground'>
                 {playlist.createdBy}
               </p>
-              <p className='text-sm text-muted-foreground'>100 songs</p>
+              <p className='text-sm text-muted-foreground'>{filteredSongs.length} songs</p>
             </div>
             <div>
               <p className='text-sm text-muted-foreground'>
@@ -33,7 +37,10 @@ const FocusedPlaylist = ({ focusedPlaylist }: Props) => {
             </div>
           </div>
         </div>
-        <SongTable />
+        <SongTable
+          focusedPlaylist={focusedPlaylist}
+          filteredSongs={filteredSongs}
+        />
       </ScrollArea>
     </div>
   );
