@@ -11,11 +11,11 @@ const LeftNav = () => {
   return (
     <div
       className={cn(
-        leftNavVisible ? "border-r-2 w-80 bg-card pr-4" : " h-full",
-        "mt-16 "
+        leftNavVisible ? "border-r-2 w-80 bg-card pr-4" : " ",
+        "flex flex-col max-h-min"
       )}
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 mb-4">
         <MenuIcon title="Home" open={leftNavVisible}>
           <Home size={24} />
         </MenuIcon>
@@ -27,9 +27,9 @@ const LeftNav = () => {
         </MenuIcon>
       </div>
       {leftNavVisible ? (
-        <div className="flex flex-col gap-6">
-          <Separator className="my-4" />
-          <Playlists />
+        <div className="flex flex-col gap-6 ">
+          <Separator className="" />
+          <Playlists  className="max-h-[40vh]" />
         </div>
       ) : null}
     </div>
@@ -52,10 +52,11 @@ const MenuIcon = ({
     <Button
       {...props}
       className={cn(
-        "flex justify-start items-center w-full h-full",
+        "flex justify-start items-center w-full h-full p-2",
         open ? "flex-row gap-2" : "flex-col",
         className
       )}
+      size={"icon"}
       variant={"ghost"}
     >
       {children}

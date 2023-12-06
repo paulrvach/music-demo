@@ -5,7 +5,7 @@ import { Slider } from "@/components/ui/slider";
 
 const MusicPlayer = () => {
   return (
-    <div className="fixed bottom-0 w-full bg-background z-30">
+    <div className=" w-full bg-background z-30 h-min">
       <Slider defaultValue={[33]} max={100} step={1} />
 
       <div className="w-full flex flex-row items-center justify-between px-6 py-4 ">

@@ -8,11 +8,12 @@ import { useNavContext } from "@/app/_context/nav-context";
 const TopNav = () => {
   const { leftNavVisible, setLeftNavVisible } = useNavContext();
   return (
-    <div className="fixed top-0 w-full py-4">
-      <div className="flex justify-between w-[100vw] px-8">
+    <div className="h-min  py-4">
+      <div className="flex justify-between">
         <Button
           variant={"ghost"}
-          className="rounded-full"
+          size={"icon"}
+          className="p-2"
           onClick={() => {
             setLeftNavVisible(!leftNavVisible);
           }}

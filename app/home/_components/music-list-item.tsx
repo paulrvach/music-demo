@@ -1,17 +1,12 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import {
-  Table,
-  TableBody,
-  TableCaption,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-type Props = {
+interface Props extends ComponentProps<typeof TableRow> {
   color: string;
   title: string;
   author?: string;
@@ -21,24 +16,23 @@ type Props = {
   explicit?: boolean;
 };
 
-const MusicListItem = (props: Props) => {
-  const color = `bg-[${props.color}]`;
+const MusicListItem = ({color, title, author, album, liked, length, explicit, ...props}: Props) => {
   const clsx = cn(color, "w-12 h-12 rounded")
   return (
-    <TableRow>
-      <TableCell>
+    <TableRow {...props}>
+      <TableCell className="text-sm">
         <div className={clsx} />
       </TableCell>
-      <TableCell>
-        <p>{props.title}</p>
-        {props.explicit && (
+      <TableCell className="text-sm">
+        <p>{title}</p>
+        {explicit && (
           <Avatar>
             <AvatarFallback>E</AvatarFallback>
           </Avatar>
         )}
       </TableCell>
-      <TableCell>{props.author}</TableCell>
-      <TableCell>{props.album}</TableCell>
+      <TableCell className="text-sm">{author}</TableCell>
+      <TableCell className="text-sm">{album}</TableCell>
     </TableRow>
   );
 };

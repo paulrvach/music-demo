@@ -31,9 +31,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavContextProvider>
+              <div className="flex w-screen flex-col px-4 overflow-x-hidden h-screen">
               <TopNav />
-              <div className="flex w-screen max-h-screen flex-col items-center px-4">
-                <div className="flex flex-row w-full h-full">
+                <div className="flex flex-row w-full  grow flex-1">
                   <LeftNav />
                   {children}
                 </div>

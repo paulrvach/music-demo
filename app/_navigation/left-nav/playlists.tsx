@@ -8,16 +8,16 @@ import { useRouter } from "next/navigation";
 
 type Props = {};
 
-const Playlists = (props: Props) => {
+const Playlists = ({...props}: React.ComponentProps<'div'>) => {
   const { playlists } = useAppSelector((state) => state.playlists);
   const router = useRouter();
 
   return (
-    <div className="">
+    <div {...props}>
       <div className="w-full flex items-center justify-center flex-col">
         <AddPlaylistModal playlists={playlists} />
       </div>
-      <ScrollArea className="h-[52vh]">
+      <ScrollArea className="h-[23rem]">
         <div className="flex flex-col gap-4 items-start justify-start mt-4 pr-3 ">
           {playlists.map((playlist) => (
             <Button
