@@ -1,3 +1,4 @@
+'use client';
 import {
   Table,
   TableBody,
@@ -9,15 +10,16 @@ import {
 } from '@/components/ui/table';
 import MusicListItem from './music-list-item';
 import { type SongType } from './song-data';
+import { setSongInFocus } from '@/redux/slices/playlistSlice';
+import { useAppDispatch } from '@/redux/hooks';
 
 type Props = {
   focusedPlaylist?: string | null;
-  filteredSongs: SongType[]
-
+  filteredSongs: SongType[];
 };
 
 const SongTable = ({ focusedPlaylist, filteredSongs }: Props) => {
-  
+  const dispatch = useAppDispatch();
   return (
     <Table className='w-[98%]'>
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -31,8 +33,11 @@ const SongTable = ({ focusedPlaylist, filteredSongs }: Props) => {
         </TableRow>
       </TableHeader>
       <TableBody className='w-min'>
-        {filteredSongs.map((song) => (
+        {filteredSongs.map((song, index) => (
           <MusicListItem
+            onClick={() => {
+              dispatch(setSongInFocus(song));
+            }}
             length={song.length}
             key={song.title}
             color={song.color}

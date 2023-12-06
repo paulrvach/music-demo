@@ -25,7 +25,7 @@ const MusicListItem = ({
 }: Props) => {
   const clsx = cn(color, 'w-12 h-12 rounded');
   return (
-    <TableRow {...props}>
+    <TableRow {...props} >
       <TableCell className='text-sm'>
         <div className={clsx} />
       </TableCell>
