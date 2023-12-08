@@ -1,13 +1,15 @@
-"use client"
+"use client";
 import { Compass, Headphones, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Playlists from "./playlists";
 import { useNavContext } from "@/app/_context/nav-context";
+import { useRouter } from "next/navigation";
 
 const LeftNav = () => {
   const { leftNavVisible } = useNavContext();
+  const router = useRouter();
   return (
     <div
       className={cn(
@@ -16,7 +18,13 @@ const LeftNav = () => {
       )}
     >
       <div className="flex flex-col gap-4 mb-4">
-        <MenuIcon title="Home" open={leftNavVisible}>
+        <MenuIcon
+          title="Home"
+          open={leftNavVisible}
+          onClick={() => {
+            router.push("/home");
+          }}
+        >
           <Home size={24} />
         </MenuIcon>
         <MenuIcon title="Explore" open={leftNavVisible}>
@@ -29,7 +37,7 @@ const LeftNav = () => {
       {leftNavVisible ? (
         <div className="flex flex-col gap-6 ">
           <Separator className="" />
-          <Playlists  className="max-h-[40vh]" />
+          <Playlists className="max-h-[40vh]" />
         </div>
       ) : null}
     </div>

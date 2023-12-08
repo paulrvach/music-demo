@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-function layout({ children }: React.ComponentProps<"div">) {
+function layout({ children }: { children: ReactNode }) {
   return <div className="w-full">{children}</div>;
 }
 

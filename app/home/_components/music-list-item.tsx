@@ -1,6 +1,5 @@
 import React, { ComponentProps } from 'react';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 
 interface Props extends ComponentProps<typeof TableRow> {

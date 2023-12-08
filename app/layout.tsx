@@ -3,10 +3,12 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Providers } from "@/redux/provider";
 import { NavContextProvider } from "./_context/nav-context";
+import { PlaylistContextProvider } from "./_context/playlist-context";
 import "./globals.css";
 import TopNav from "./_navigation/top-nav/top-nav";
 import LeftNav from "./_navigation/left-nav/left-nav";
 import MusicPlayer from "./_navigation/music-player/music-player";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,14 +33,17 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavContextProvider>
-              <div className="flex w-screen flex-col px-4 overflow-x-hidden h-screen">
-              <TopNav />
-                <div className="flex flex-row w-full  grow flex-1">
-                  <LeftNav />
-                  {children}
+              <PlaylistContextProvider>
+                <div className="flex w-screen flex-col px-4 overflow-x-hidden h-screen">
+                  <TopNav />
+                  <div className="flex flex-row w-full  grow flex-1">
+                    <LeftNav />
+                    {children}
+                  </div>
+                  <MusicPlayer />
                 </div>
-                <MusicPlayer />
-              </div>
+                <Toaster />
+              </PlaylistContextProvider>
             </NavContextProvider>
           </ThemeProvider>
         </Providers>

@@ -1,23 +1,17 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
 type Props = {
   title: string;
   artist: string;
-  albumArt: { src: string; height: number; width: number };
+  color: string;
 };
 
-const SongBanner = ({ albumArt, artist, title }: Props) => {
+const SongBanner = ({ color, artist, title }: Props) => {
   return (
-    <div className="flex flex-row items-center justify-center">
-      <div className="w-16 h-16">
-        <Image
-          src={albumArt?.src}
-          height={albumArt?.height}
-          width={albumArt?.width}
-          alt={title}
-        />
-      </div>
+    <div className="flex flex-row items-center gap-4 justify-center">
+      <div className={cn(color, "w-16 h-16 rounded")} />
       <div className="flex flex-col h-full justify-between">
         <p>{title}</p>
         <p className="text-sm text-muted-foreground">{artist}</p>

@@ -15,7 +15,7 @@ import { useAppDispatch } from '@/redux/hooks';
 
 type Props = {
   focusedPlaylist?: string | null;
-  filteredSongs: SongType[];
+  filteredSongs: SongType[] | null;
 };
 
 const SongTable = ({ focusedPlaylist, filteredSongs }: Props) => {
@@ -33,7 +33,7 @@ const SongTable = ({ focusedPlaylist, filteredSongs }: Props) => {
         </TableRow>
       </TableHeader>
       <TableBody className='w-min'>
-        {filteredSongs.map((song, index) => (
+        {filteredSongs?.map((song, index) => (
           <MusicListItem
             onClick={() => {
               dispatch(setSongInFocus(song));

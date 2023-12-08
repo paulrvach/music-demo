@@ -4,10 +4,11 @@ import { useNavContext } from '../_context/nav-context';
 import FocusedPlaylist from './_components/focused-playlist';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import HomePage from './_components/home-page';
 
 type Props = {};
 
-const HomePage = (props: Props) => {
+const Main = (props: Props) => {
   const searchParams = useSearchParams();
   const { playlistVisible, setPlaylistVisible } = useNavContext();
   const focusedPlaylist = searchParams.get('playlist');
@@ -18,7 +19,8 @@ const HomePage = (props: Props) => {
 
   return (
     <ScrollArea className='w-full h-full'>
-      <div className=' w-full h-full pr-4'>
+      <div className=' max-w-[99%] overflow-x-hidden h-full pr-4'>
+        <HomePage />
         {focusedPlaylist && playlistVisible && (
           <FocusedPlaylist focusedPlaylist={focusedPlaylist} />
         )}
@@ -27,4 +29,4 @@ const HomePage = (props: Props) => {
   );
 };
 
-export default HomePage;
+export default Main;

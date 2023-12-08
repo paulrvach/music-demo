@@ -1,7 +1,14 @@
 "use client";
 
-export default function Home() {
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
+export default function Home() {
+  const router = useRouter()
+  useEffect(()=>{
+    routgit er.push("/home")
+
+  },[])
   return (
     <main className="flex min-h-screen flex-col items-center px-4">
       

@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { CheckCircle, Plus } from "lucide-react";
 import { useAppDispatch } from "@/redux/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/select";
 import { setPlaylists } from "@/redux/slices/playlistSlice";
 import { v4 as uuidv4 } from "uuid";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   id: z.string(),
@@ -56,6 +57,7 @@ type Props = {
 };
 
 const AddPlaylistModal = ({ playlists }: Props) => {
+  const { toast } = useToast();
   const dispacth = useAppDispatch();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -152,7 +154,24 @@ const AddPlaylistModal = ({ playlists }: Props) => {
                 )}
               />
               <DialogClose asChild>
-                <Button type="submit">Submit</Button>
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    toast({
+                      title: "Playlist Added",
+                      description: (
+                        <div>
+                          <p>{form.getValues("playlistName")}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {form.getValues("createdBy")}
+                          </p>
+                        </div>
+                      ),
+                    });
+                  }}
+                >
+                  Submit
+                </Button>
               </DialogClose>
             </form>
           </Form>
